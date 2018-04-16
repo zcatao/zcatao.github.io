@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="最近浩哥给我布置了一个FPGA实现QPSK解调的任务，其中最重要的一步便是载波同步——Costas环技术的实现，老大也基于了一些思想上的指导。已经布置了好长时间了，不能让老大失望。">
+<meta name="description" content="最近浩哥给我布置了一个FPGA实现QPSK解调的任务，其中最重要的一步便是载波同步——Costas环技术的实现，老大也基于了一些思想上的指导。已经布置了好长时间了，不能让老大失望。 Costas环实现框图环路滤波器模型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Costas环的设计与实现">
 <meta property="og:url" content="http://zcatao.github.io/2018/04/16/Costas环的设计与实现/index.html">
 <meta property="og:site_name">
-<meta property="og:description" content="最近浩哥给我布置了一个FPGA实现QPSK解调的任务，其中最重要的一步便是载波同步——Costas环技术的实现，老大也基于了一些思想上的指导。已经布置了好长时间了，不能让老大失望。">
+<meta property="og:description" content="最近浩哥给我布置了一个FPGA实现QPSK解调的任务，其中最重要的一步便是载波同步——Costas环技术的实现，老大也基于了一些思想上的指导。已经布置了好长时间了，不能让老大失望。 Costas环实现框图环路滤波器模型">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-16T01:05:12.991Z">
+<meta property="og:updated_time" content="2018-04-16T02:48:45.930Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Costas环的设计与实现">
-<meta name="twitter:description" content="最近浩哥给我布置了一个FPGA实现QPSK解调的任务，其中最重要的一步便是载波同步——Costas环技术的实现，老大也基于了一些思想上的指导。已经布置了好长时间了，不能让老大失望。">
+<meta name="twitter:description" content="最近浩哥给我布置了一个FPGA实现QPSK解调的任务，其中最重要的一步便是载波同步——Costas环技术的实现，老大也基于了一些思想上的指导。已经布置了好长时间了，不能让老大失望。 Costas环实现框图环路滤波器模型">
 
 
 
@@ -310,7 +310,7 @@
 
       
         <p>最近浩哥给我布置了一个FPGA实现QPSK解调的任务，其中最重要的一步便是载波同步——Costas环技术的实现，老大也基于了一些思想上的指导。已经布置了好长时间了，不能让老大失望。</p>
-
+<h2 id="Costas环实现框图"><a href="#Costas环实现框图" class="headerlink" title="Costas环实现框图"></a>Costas环实现框图</h2><h2 id="环路滤波器模型"><a href="#环路滤波器模型" class="headerlink" title="环路滤波器模型"></a>环路滤波器模型</h2>
       
     </div>
     
@@ -398,8 +398,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -459,6 +468,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Costas环实现框图"><span class="nav-number">1.</span> <span class="nav-text">Costas环实现框图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环路滤波器模型"><span class="nav-number">2.</span> <span class="nav-text">环路滤波器模型</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -653,6 +678,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
