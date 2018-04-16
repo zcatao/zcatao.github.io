@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="markdown,hexo," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="hexo-mathA hexo plugin that uses MathJax to render math equations. Features:  Automatcially deploy and add reference to MathJax Provide support to both MathJax’s inline math syntax and math tags  (See">
+<meta name="keywords" content="markdown,hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo_math插件">
+<meta property="og:url" content="http://zcatao.github.io/2015/12/19/hexo-math插件/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="hexo-mathA hexo plugin that uses MathJax to render math equations. Features:  Automatcially deploy and add reference to MathJax Provide support to both MathJax’s inline math syntax and math tags  (See">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-15T12:48:07.098Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo_math插件">
+<meta name="twitter:description" content="hexo-mathA hexo plugin that uses MathJax to render math equations. Features:  Automatcially deploy and add reference to MathJax Provide support to both MathJax’s inline math syntax and math tags  (See">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zcatao.github.io/2015/12/19/hexo-math插件/"/>
+
+
+
+
+
+  <title>hexo_math插件 | </title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title"></span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">zcatao'blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zcatao.github.io/2015/12/19/hexo-math插件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Songtao Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">hexo_math插件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-19T12:17:17+08:00">
+                2015-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="hexo-math"><a href="#hexo-math" class="headerlink" title="hexo-math"></a>hexo-math</h1><p>A hexo plugin that uses MathJax to render math equations. Features:</p>
+<ul>
+<li>Automatcially deploy and add reference to MathJax</li>
+<li>Provide support to both MathJax’s inline math syntax and math tags</li>
+</ul>
+<p><del>(See a Chinese version of this document <a href="http://blog.catx.me/2014/03/09/hexo-mathjax-plugin/" target="_blank" rel="noopener">here</a>)</del> <em>Information in that post is out-dated</em></p>
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><blockquote>
+<p>npm install hexo-math –save</p>
+</blockquote>
+<p>See <a href="#migration-note">Migration Note</a> if you are upgrading from an older version.</p>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><p>You can use MathJax’s inline math syntax directly. But always remember to escape any special characters by adding a <figure class="highlight plain"><figcaption><span>before it.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">LaTex equations usually contains tones of special characters like ```\```, which makes it painful to escape them one by one. In such cases, you can use hexo-math&apos;s tags to make your life easier.</span><br><span class="line"></span><br><span class="line">**MathJax Inline:**</span><br><span class="line"></span><br><span class="line">```markdown</span><br><span class="line">Simple inline $a = b + c$.</span><br></pre></td></tr></table></figure></p>
+<p><strong>MathJax Block:</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$$\frac&#123;\partial u&#125;&#123;\partial t&#125;</span><br><span class="line">= h^2 \left( \frac&#123;\partial^2 u&#125;&#123;\partial x^2&#125; +</span><br><span class="line">\frac&#123;\partial^2 u&#125;&#123;\partial y^2&#125; +</span><br><span class="line">\frac&#123;\partial^2 u&#125;&#123;\partial z^2&#125;\right)$$</span><br></pre></td></tr></table></figure>
+<p><strong>Tag:</strong></p>
+<p>Single line content will be parsed as inline math (same as <code>$...$</code>):<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">This equation &#123;% math %&#125;\cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1 &#123;% endmath %&#125; is inline.</span><br></pre></td></tr></table></figure></p>
+<p>Multiple line content will be parsed as block math (same as <code>$$...$$</code>)<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;% math %&#125;</span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">\dot&#123;x&#125; &amp; = \sigma(y-x) \\</span><br><span class="line">\dot&#123;y&#125; &amp; = \rho x - y - xz \\</span><br><span class="line">\dot&#123;z&#125; &amp; = -\beta z + xy</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line">&#123;% endmath %&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p><strong>Deprecated since 2.0.0</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>Tag Block:</strong></p>
+</blockquote>
+<blockquote>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;% math_block %&#125;</span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">\dot&#123;x&#125; &amp; = \sigma(y-x) \\</span><br><span class="line">\dot&#123;y&#125; &amp; = \rho x - y - xz \\</span><br><span class="line">\dot&#123;z&#125; &amp; = -\beta z + xy</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line">&#123;% endmath_block %&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="Migration-Note"><a href="#Migration-Note" class="headerlink" title="Migration Note"></a>Migration Note</h2><h3 id="Migrating-to-2-0-0"><a href="#Migrating-to-2-0-0" class="headerlink" title="Migrating to 2.0.0"></a>Migrating to 2.0.0</h3><ul>
+<li><code>math_block</code> is deprecated (but still usable. This won’t break your site)</li>
+<li><code>math</code> block is used to handle both inline and block math due to breaking changes made since Hexo 3.x. (This will break your site if you’re using <code>math</code> block)</li>
+</ul>
+<p>Since Hexo 3.x, nunjucks is used as tag engine instead of swig. Syntax like this won’t work any more:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% math \frac&#123;|ax + by + c|&#125;&#123;\sqrt&#123;a^&#123;2&#125;+b^&#123;2&#125;&#125;&#125; %&#125;</span><br></pre></td></tr></table></figure>
+<p>Instead, you should use open and close tag since this version:<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% math %&#125;\frac&#123;|ax + by + c|&#125;&#123;\sqrt&#123;a^&#123;2&#125;+b^&#123;2&#125;&#125;&#125; &#123;% endmath %&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Change all your <code>math</code> tags accordingly.</p>
+<h3 id="Migrating-to-1-0-6"><a href="#Migrating-to-1-0-6" class="headerlink" title="Migrating to 1.0.6"></a>Migrating to 1.0.6</h3><p><strong>!!!IMPORTANT!!!</strong></p>
+<p>Since 1.0.6, hexo-math uses a diffrent approach to inject MathJax into your site. MathJax will be injected on-the-fly and on-demand. This means:</p>
+<ul>
+<li><strong>You are no longer required to run <code>hexo math install</code></strong></li>
+<li>MathJax will not be loaded on pages without math tags allowing faster loading speed.</li>
+</ul>
+<p>If you have run <code>hexo math install</code> before, please <strong>do run:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo math</span><br></pre></td></tr></table></figure>
+<p>This will clean up previous installation. Or you can re-install your theme if for some reason this does not work.</p>
+<h3 id="From-1-0-4-to-1-0-5-Support-Hexo-3-0"><a href="#From-1-0-4-to-1-0-5-Support-Hexo-3-0" class="headerlink" title="From 1.0.4 to 1.0.5 (Support Hexo 3.0)"></a>From 1.0.4 to 1.0.5 (Support Hexo 3.0)</h3><p>Hexo 3.0 introduces multiple breaking changes. Versions before 1.0.5 won’t work with it.<br>The following changes are made since 1.0.5 to adapt the new 3.0 API:</p>
+<ul>
+<li>Block math tag renamed from <code>math-block</code> to <code>math_block</code></li>
+</ul>
+<h3 id="From-1-0-3-and-before"><a href="#From-1-0-3-and-before" class="headerlink" title="From 1.0.3 and before"></a>From 1.0.3 and before</h3><p>Since 1.0.4, MathJax scripts will be injected in <code>&lt;body&gt;</code> section instead of <code>&lt;head&gt;</code> section.<br>Before you update <code>hexo-math</code> to newer version, you should run:</p>
+<blockquote>
+<p>$ hexo math uninstall</p>
+</blockquote>
+<p>After <code>hexo-math</code> is updated, run install again:</p>
+<blockquote>
+<p>$ hexo math install</p>
+</blockquote>
+<h2 id="Development"><a href="#Development" class="headerlink" title="Development"></a>Development</h2><h3 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h3><p>To run the test suit, first you should install dependencies for the test site:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; $ <span class="built_in">cd</span> .<span class="built_in">test</span>-site</span><br><span class="line">&gt; $ npm install</span><br></pre></td></tr></table></figure>
+<p>Then run <code>npm test</code> from <code>hexo-math</code>‘s root dir.</p>
+<h4 id="Add-post-specs"><a href="#Add-post-specs" class="headerlink" title="Add post specs"></a>Add post specs</h4><p>In <code>.test-site/source/_post</code> folder, add a pair of file for each test cases:</p>
+<ul>
+<li>[test-case-name].md</li>
+<li>[test-case-name].md.expected</li>
+</ul>
+<p>The <code>.md</code> file contains the Markdown source of a post and the <code>.expected</code> file contains expected HTML rendered from the source.</p>
+<p>If a test case is added to address certian issues, the issue id should be added to the <code>.md</code>‘s front matter section:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">title: "Tag Escpae"</span><br><span class="line">date: 2015-04-21 02:47:19</span><br><span class="line">tags:</span><br><span class="line">issues:</span><br><span class="line"><span class="bullet">- </span>10</span><br><span class="line">---</span><br><span class="line">&#123;% math %&#125; |a|&lt;1 &#123;% endmath %&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/markdown/" rel="tag"># markdown</a>
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/19/数字信号处理之离散信号/" rel="next" title="数字信号处理之离散信号">
+                <i class="fa fa-chevron-left"></i> 数字信号处理之离散信号
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/20/STM32-I2C硬件BUG引发的血案-转/" rel="prev" title="STM32_I2C硬件BUG引发的血案(转)">
+                STM32_I2C硬件BUG引发的血案(转) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Songtao Yang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo-math"><span class="nav-number">1.</span> <span class="nav-text">hexo-math</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install"><span class="nav-number">1.1.</span> <span class="nav-text">Install</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Usage"><span class="nav-number">1.2.</span> <span class="nav-text">Usage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Migration-Note"><span class="nav-number">1.3.</span> <span class="nav-text">Migration Note</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Migrating-to-2-0-0"><span class="nav-number">1.3.1.</span> <span class="nav-text">Migrating to 2.0.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Migrating-to-1-0-6"><span class="nav-number">1.3.2.</span> <span class="nav-text">Migrating to 1.0.6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#From-1-0-4-to-1-0-5-Support-Hexo-3-0"><span class="nav-number">1.3.3.</span> <span class="nav-text">From 1.0.4 to 1.0.5 (Support Hexo 3.0)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#From-1-0-3-and-before"><span class="nav-number">1.3.4.</span> <span class="nav-text">From 1.0.3 and before</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Development"><span class="nav-number">1.4.</span> <span class="nav-text">Development</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Test"><span class="nav-number">1.4.1.</span> <span class="nav-text">Test</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Add-post-specs"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">Add post specs</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Songtao Yang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="STM32,I2C,嵌入式,ARM," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="江湖传言，STM32的硬件I2C一直有bug，最近面临做四旋翼的芯片选型问题,原文  下面的函数中有一个BUG, 也就是SR2不能用WHILE来轮询,而应直接读出.如下面代码段, 因此,在这里说的这是STM32的BUG其实是我的代码的错误:123I2C2-&amp;gt;DR = inerAddress[1];while( (I2C2-&amp;gt;SR1&amp;amp;Q_I2C_SR1_BIT_BTF)==0">
+<meta name="keywords" content="STM32,I2C,嵌入式,ARM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STM32_I2C硬件BUG引发的血案(转)">
+<meta property="og:url" content="http://zcatao.github.io/2015/12/20/STM32-I2C硬件BUG引发的血案-转/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="江湖传言，STM32的硬件I2C一直有bug，最近面临做四旋翼的芯片选型问题,原文  下面的函数中有一个BUG, 也就是SR2不能用WHILE来轮询,而应直接读出.如下面代码段, 因此,在这里说的这是STM32的BUG其实是我的代码的错误:123I2C2-&amp;gt;DR = inerAddress[1];while( (I2C2-&amp;gt;SR1&amp;amp;Q_I2C_SR1_BIT_BTF)==0">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://7xpc7h.com1.z0.glb.clouddn.com/9KGSA@[JTLD6I3V9B~`4P{U.png">
+<meta property="og:image" content="http://7xpc7h.com1.z0.glb.clouddn.com/stm32image_thumb[9]%25207AD77FA8.png">
+<meta property="og:image" content="http://7xpc7h.com1.z0.glb.clouddn.com/stm32image_thumb[3]%2520604637F6.png">
+<meta property="og:image" content="http://7xpc7h.com1.z0.glb.clouddn.com/stm32image_thumb[7]%25200E51DD10.png">
+<meta property="og:image" content="http://7xpc7h.com1.z0.glb.clouddn.com/stm32image_thumb[5]%2520078E6204.png">
+<meta property="og:image" content="http://7xpc7h.com1.z0.glb.clouddn.com/stm32image_thumb[11]%20471D6A2F.png">
+<meta property="og:updated_time" content="2018-04-15T12:48:07.098Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="STM32_I2C硬件BUG引发的血案(转)">
+<meta name="twitter:description" content="江湖传言，STM32的硬件I2C一直有bug，最近面临做四旋翼的芯片选型问题,原文  下面的函数中有一个BUG, 也就是SR2不能用WHILE来轮询,而应直接读出.如下面代码段, 因此,在这里说的这是STM32的BUG其实是我的代码的错误:123I2C2-&amp;gt;DR = inerAddress[1];while( (I2C2-&amp;gt;SR1&amp;amp;Q_I2C_SR1_BIT_BTF)==0">
+<meta name="twitter:image" content="http://7xpc7h.com1.z0.glb.clouddn.com/9KGSA@[JTLD6I3V9B~`4P{U.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zcatao.github.io/2015/12/20/STM32-I2C硬件BUG引发的血案-转/"/>
+
+
+
+
+
+  <title>STM32_I2C硬件BUG引发的血案(转) | </title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title"></span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">zcatao'blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zcatao.github.io/2015/12/20/STM32-I2C硬件BUG引发的血案-转/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Songtao Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">STM32_I2C硬件BUG引发的血案(转)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-20T12:43:41+08:00">
+                2015-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/STM32/" itemprop="url" rel="index">
+                    <span itemprop="name">STM32</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>江湖传言，STM32的硬件I2C一直有bug，最近面临做四旋翼的芯片选型问题,<a href="http://blog.gkong.com/zjcsharp_112878.ashx" target="_blank" rel="noopener">原文</a></p>
+</blockquote>
+<p>下面的函数中有一个BUG, 也就是SR2不能用WHILE来轮询,而应直接读出.如下面代码段, 因此,在这里说的这是STM32的BUG其实是我的代码的错误:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">I2C2-&gt;DR = inerAddress[<span class="number">1</span>];</span><br><span class="line"><span class="keyword">while</span>( (I2C2-&gt;SR1&amp;Q_I2C_SR1_BIT_BTF)==<span class="number">0</span> );</span><br><span class="line">I2C2-&gt;SR2;   <span class="comment">// 正解</span></span><br></pre></td></tr></table></figure></p>
+<p>一直都不相信STM32的I2C接口会存在问题，因为工作经验无数次告诉我，嵌入式系统设计中的99.999%的问题不会是由于MCU本身的设计问题所引起,绝大部分都是硬件工程师或软件工程师的某个设计缺陷所造成的. 这次的设计经历也不例外.</p>
+<p>由于终于可以抽多点时间用于设计STM32的I2C的软件接口, 因此, 决定重构之前用于主从STM32通讯所用的I2C模块（基于I2C中断+状态机收发）。I2C的中断发送模块很快就重构完毕并且强化了错误处理和I2C总线hang的自恢复功能代码模块（I2C BUS Hang：也就是SDA 和SCL都被某Slave DEVICE拉低，大部分发生在主机接收从机传过来的数据包的最后一个字节的数据时，没有发送P（停止位）所造成的，这时Slave device （EEPROM）因为接收不到P，从而会DEAD LOOP地发送数据给主机，在主机方向看，I2C总线就相当于一直处于BUSY的状态，也就是网上问得最多的关于I2C的问题-I2C总线TMD的怎么会突然间死掉了、BUSY了、HANG的原因。）。</p>
+<p>本以为I2C中断读模块也会很顺利地完成，但是却被卡住了一整天，只要加一个断点，在大部份代码处加无所谓，读FUN每次都正确执行，但只要全速运行，就只能运行一次，然后就过不去了，而且过不去的地方并不固定。由于DUBEG得有点集中不了精力，于是就做好问题的Brainstrom的笔记，放了下，晚上出差到深圳，到客户处做系统需求的讨论会，主要是上位机部分的。然后第二天晚上又赶回来，在车上的半梦半觉中让潜意思去思考。回到家后，选择在我的生物钟的最佳的时侯，晚上10点。开始重新在问题的Brainstorm处接着DUBGE。WORK PLAN如下：</p>
+<ol>
+<li>把程序恢复到测试I2C写的测试用例状态，PASS。</li>
+<li>一小段代码就DEBUG一次的步步为营方法，按之前的思路把代码加入到读的模块（忽略防守代码，只加入必需的功能代码）。都OK后，全速运行，XXX，又卡住了。细过了一片读模块。PASS。于是进入计划中的（3）</li>
+<li>全速运行，然后在可能卡住的地方加上断点，而不是之前的先加断点，然后运行的方式（这种方式，已确认PASS）：<br>加了几处后，发现程序是在下面代码处卡住的：<br><img src="http://7xpc7h.com1.z0.glb.clouddn.com/9KGSA@[JTLD6I3V9B~`4P{U.png" alt=""></li>
+</ol>
+<p><img src="http://7xpc7h.com1.z0.glb.clouddn.com/stm32image_thumb[9]%25207AD77FA8.png" alt=""><br>但是奇怪了，每次我只要在箭头指向的语句后加上断点，每次都能PASS。于是知道要到 I2C_CheckEvent 函数中就能找到问题的原因了，于是做下面的几步，目的是把包含I2C_CheckEvent Fun的链接库中的stm32f10x_i2c.o排除掉,而把stm32f10x_i2c.c加入到项目中,使得DEBUG时能进入到 I2C_CheckEvent Fun 中去.<br><img src="http://7xpc7h.com1.z0.glb.clouddn.com/stm32image_thumb[3]%2520604637F6.png" alt=""></p>
+<p>于是全速运行，然后在 stm32f10x_i2c.c中加上断点，终于捕捉到问题点了，分析如下图所示：</p>
+<p><img src="http://7xpc7h.com1.z0.glb.clouddn.com/stm32image_thumb[7]%25200E51DD10.png" alt=""><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> vu32 volitile unsigned long long </span></span><br><span class="line"><span class="comment">/* Read the I2Cx status register */</span></span><br><span class="line"><span class="comment">//  flag1 = I2Cx-&gt;SR1;             // 原代码</span></span><br><span class="line"><span class="comment">//  flag2 = I2Cx-&gt;SR2;            //原代码</span></span><br><span class="line"><span class="comment">//  flag2 = flag2 &lt;&lt; 16;           //原代码</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">/* Get the last event value from I2C status register */</span></span><br><span class="line">  <span class="comment">//lastevent = (flag1 | flag2) &amp; FLAG_Mask; //原代码</span></span><br><span class="line"> lastevent = (vu32)( (vu32)(I2Cx-&gt;SR1) | ((vu32)(I2Cx-&gt;SR2) &lt;&lt; (vu32)<span class="number">16</span>) ); <span class="comment">//qzm为了确认而加入的，实际效果和用库的是一样的结果。</span></span><br><span class="line"> lastevent &amp;= (vu32)FLAG_Mask; <span class="comment">//qzm为了确认而加入的，实际效果和用库的是一样的结果。</span></span><br></pre></td></tr></table></figure></p>
+<p>为了确认，我也把 Fun中的所有变量改为以v开头的，以确保不被编译器所优化掉，编译代码也不作任何的优化。但是全速时I2C获得的事件会多出个BTF位，而在一开始时如果先进入DEBUG，加上断点，然后运行，lastevent == 0x30001(之也说明了库代码是不存在BUG的）,如下图所示:</p>
+<p>  <img src="http://7xpc7h.com1.z0.glb.clouddn.com/stm32image_thumb[5]%2520078E6204.png" alt=""></p>
+<p>这应该是STM32 I2C硬件接口的BUG，解决方法如下：<br><img src="http://7xpc7h.com1.z0.glb.clouddn.com/stm32image_thumb[11]%20471D6A2F.png" alt=""></p>
+<p>把库中的I2C中断事件判定结合SR1和SR2的思路相反,我把读SR1和SR2明确地分了出现,并进行确认, PASS, 给模块加上防守代码,做好文档, 至此,模块的生命周期进入到白盒测试和黑盒测试阶段.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/STM32/" rel="tag"># STM32</a>
+          
+            <a href="/tags/I2C/" rel="tag"># I2C</a>
+          
+            <a href="/tags/嵌入式/" rel="tag"># 嵌入式</a>
+          
+            <a href="/tags/ARM/" rel="tag"># ARM</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/12/19/hexo-math插件/" rel="next" title="hexo_math插件">
+                <i class="fa fa-chevron-left"></i> hexo_math插件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/12/20/数字信号处理之频域分析/" rel="prev" title="数字信号处理之频域分析">
+                数字信号处理之频域分析 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Songtao Yang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Songtao Yang</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
