@@ -7,7 +7,7 @@
 
 <html class="theme-next muse use-motion" lang="">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <meta name="theme-color" content="#222">
@@ -121,7 +121,7 @@
 
 
 
-  <title></title>
+  <title></title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -140,7 +140,7 @@
     
   
 
-  <div class="container sidebar-position-left 
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
   page-home">
     <div class="headband"></div>
 
@@ -552,8 +552,11 @@
       
         
           
-            <p>最近浩哥给我布置了一个FPGA实现QPSK解调的任务，其中最重要的一步便是载波同步——Costas环技术的实现，老大也基于了一些思想上的指导。已经布置了好长时间了，不能让老大失望。</p>
-<h2 id="Costas环实现框图"><a href="#Costas环实现框图" class="headerlink" title="Costas环实现框图"></a>Costas环实现框图</h2><h2 id="环路滤波器模型"><a href="#环路滤波器模型" class="headerlink" title="环路滤波器模型"></a>环路滤波器模型</h2>
+            <blockquote>
+<p>最近浩哥给我布置了一个FPGA实现QPSK解调的任务，其中最重要的一步便是载波同步——Costas环技术的实现，老大也基于了一些思想上的指导。已经布置了好长时间了，不能让老大失望。</p>
+</blockquote>
+<h2 id="Costas环实现框图"><a href="#Costas环实现框图" class="headerlink" title="Costas环实现框图"></a>Costas环实现框图</h2><h2 id="环路滤波器模型"><a href="#环路滤波器模型" class="headerlink" title="环路滤波器模型"></a>环路滤波器模型</h2><p>$H(z)=C_1 + \dfrac{C_2 z^{-1}}{1-z^{-1}}$</p>
+<h2 id="matlab-仿真"><a href="#matlab-仿真" class="headerlink" title="matlab 仿真"></a>matlab 仿真</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">clear;clc</span><br><span class="line"><span class="comment">%% 设置参数</span></span><br><span class="line">load(<span class="string">'lpf.mat'</span>,<span class="string">'Num'</span>);</span><br><span class="line">fs = <span class="number">50e6</span>;          <span class="comment">%采样频率</span></span><br><span class="line">sim_time = <span class="number">0.05</span>;    <span class="comment">%仿真时长</span></span><br><span class="line">real_fc = <span class="number">1000050</span>;  <span class="comment">%实信号载波频</span></span><br><span class="line">local_fc = <span class="number">10000</span>;   <span class="comment">%初始本地振荡频率</span></span><br><span class="line">SampleBit_len = <span class="number">8</span>;</span><br><span class="line">LocalBit_len = <span class="number">8</span>;</span><br><span class="line">DDS_PhaseBit_len = <span class="number">32</span>;</span><br><span class="line"></span><br><span class="line">C1 = power(<span class="number">2</span>,<span class="number">-31</span>);</span><br><span class="line">C2 = power(<span class="number">2</span>,<span class="number">-15</span>);</span><br><span class="line"></span><br><span class="line">t =   <span class="number">1</span> / fs : <span class="number">1</span> / fs : sim_time;</span><br><span class="line">sampled_data = <span class="built_in">sin</span>(<span class="number">2</span> * <span class="built_in">pi</span> * real_fc * t) ;</span><br><span class="line">Data_length = <span class="built_in">length</span>(sampled_data);</span><br><span class="line"></span><br><span class="line"><span class="comment">%变量申请空间</span></span><br><span class="line"><span class="comment">% DDS_CtrlWord=   zeros(1,Data_length);</span></span><br><span class="line"><span class="comment">% DDS_Phase   =   zeros(1,Data_length);</span></span><br><span class="line"><span class="comment">% nco_cos     =   zeros(1,Data_length);</span></span><br><span class="line"><span class="comment">% nco_sin     =   zeros(1,Data_length);</span></span><br><span class="line"></span><br><span class="line">t = power(<span class="number">2</span>,DDS_PhaseBit_len);</span><br><span class="line"></span><br><span class="line"><span class="comment">% for k = 1 : Data_length - 1</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">%     DDS_CtrlWord(k) = 1024;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%     nco_sin(k) = sin(2 * pi * DDS_Phase(k) / t);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%     nco_cos(k) = cos(2 * pi * DDS_Phase(k) / t);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%     DDS_Phase(k+1) = DDS_Phase(k) + DDS_CtrlWord(k);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% end </span></span><br><span class="line"><span class="comment">% lpf_out_i = zeros(1,length(Num));</span></span><br><span class="line"><span class="comment">% lpf_out_q = zeros(1,length(Num));</span></span><br><span class="line">mult_i  = <span class="built_in">zeros</span>(<span class="number">1</span>,Data_length + <span class="built_in">length</span>(Num));</span><br><span class="line">mult_q  = <span class="built_in">zeros</span>(<span class="number">1</span>,Data_length + <span class="built_in">length</span>(Num));</span><br><span class="line"></span><br><span class="line">DDS_Phase = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">figure;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k = <span class="number">1</span> : Data_length - <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">%  DDS_CtrlWord = 1024;</span></span><br><span class="line"></span><br><span class="line">    nco_sin = <span class="built_in">sin</span>(<span class="number">2</span> * <span class="built_in">pi</span> * DDS_Phase / t) * power(<span class="number">2</span>,LocalBit_len);</span><br><span class="line"></span><br><span class="line">    nco_cos = <span class="built_in">cos</span>(<span class="number">2</span> * <span class="built_in">pi</span> * DDS_Phase / t) * power(<span class="number">2</span>,LocalBit_len);</span><br><span class="line"></span><br><span class="line">    mult_i(k + <span class="built_in">length</span>(Num) - <span class="number">1</span>)  = nco_sin * sampled_data(k);</span><br><span class="line"></span><br><span class="line">    mult_q(k + <span class="built_in">length</span>(Num) - <span class="number">1</span>)  = nco_sin * sampled_data(k);</span><br><span class="line"></span><br><span class="line">    lpf_out_i   =  mult_i(k + <span class="built_in">length</span>(Num) - <span class="number">1</span> : <span class="number">-1</span> : k) * Num';</span><br><span class="line"></span><br><span class="line">    lpf_out_q   =  mult_q(k + <span class="built_in">length</span>(Num) - <span class="number">1</span> : <span class="number">-1</span> : k) * Num';</span><br><span class="line"></span><br><span class="line">    PhaseDetect = lpf_out_i * lpf_out_q;</span><br><span class="line"></span><br><span class="line">    LoopFilter_out = PhaseDetect;</span><br><span class="line"></span><br><span class="line">    DDS_CtrlWord = LoopFilter_out;</span><br><span class="line">    </span><br><span class="line">    DDS_Phase = DDS_Phase + DDS_CtrlWord;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
           
         
       
@@ -1840,7 +1843,7 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
