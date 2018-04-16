@@ -253,6 +253,376 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zcatao.github.io/2015/12/19/hexo-math插件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Songtao Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zcatao的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/12/19/hexo-math插件/" itemprop="url">hexo_math插件</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-19T12:17:17+08:00">
+                2015-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="hexo-math"><a href="#hexo-math" class="headerlink" title="hexo-math"></a>hexo-math</h1><p>A hexo plugin that uses MathJax to render math equations. Features:</p>
+<ul>
+<li>Automatcially deploy and add reference to MathJax</li>
+<li>Provide support to both MathJax’s inline math syntax and math tags</li>
+</ul>
+<p><del>(See a Chinese version of this document <a href="http://blog.catx.me/2014/03/09/hexo-mathjax-plugin/" target="_blank" rel="noopener">here</a>)</del> <em>Information in that post is out-dated</em></p>
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><blockquote>
+<p>npm install hexo-math –save</p>
+</blockquote>
+<p>See <a href="#migration-note">Migration Note</a> if you are upgrading from an older version.</p>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><p>You can use MathJax’s inline math syntax directly. But always remember to escape any special characters by adding a <figure class="highlight plain"><figcaption><span>before it.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">LaTex equations usually contains tones of special characters like ```\```, which makes it painful to escape them one by one. In such cases, you can use hexo-math&apos;s tags to make your life easier.</span><br><span class="line"></span><br><span class="line">**MathJax Inline:**</span><br><span class="line"></span><br><span class="line">```markdown</span><br><span class="line">Simple inline $a = b + c$.</span><br></pre></td></tr></table></figure></p>
+<p><strong>MathJax Block:</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$$\frac&#123;\partial u&#125;&#123;\partial t&#125;</span><br><span class="line">= h^2 \left( \frac&#123;\partial^2 u&#125;&#123;\partial x^2&#125; +</span><br><span class="line">\frac&#123;\partial^2 u&#125;&#123;\partial y^2&#125; +</span><br><span class="line">\frac&#123;\partial^2 u&#125;&#123;\partial z^2&#125;\right)$$</span><br></pre></td></tr></table></figure>
+<p><strong>Tag:</strong></p>
+<p>Single line content will be parsed as inline math (same as <code>$...$</code>):<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">This equation &#123;% math %&#125;\cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1 &#123;% endmath %&#125; is inline.</span><br></pre></td></tr></table></figure></p>
+<p>Multiple line content will be parsed as block math (same as <code>$$...$$</code>)<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;% math %&#125;</span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">\dot&#123;x&#125; &amp; = \sigma(y-x) \\</span><br><span class="line">\dot&#123;y&#125; &amp; = \rho x - y - xz \\</span><br><span class="line">\dot&#123;z&#125; &amp; = -\beta z + xy</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line">&#123;% endmath %&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p><strong>Deprecated since 2.0.0</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>Tag Block:</strong></p>
+</blockquote>
+<blockquote>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;% math_block %&#125;</span><br><span class="line">\begin&#123;aligned&#125;</span><br><span class="line">\dot&#123;x&#125; &amp; = \sigma(y-x) \\</span><br><span class="line">\dot&#123;y&#125; &amp; = \rho x - y - xz \\</span><br><span class="line">\dot&#123;z&#125; &amp; = -\beta z + xy</span><br><span class="line">\end&#123;aligned&#125;</span><br><span class="line">&#123;% endmath_block %&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="Migration-Note"><a href="#Migration-Note" class="headerlink" title="Migration Note"></a>Migration Note</h2><h3 id="Migrating-to-2-0-0"><a href="#Migrating-to-2-0-0" class="headerlink" title="Migrating to 2.0.0"></a>Migrating to 2.0.0</h3><ul>
+<li><code>math_block</code> is deprecated (but still usable. This won’t break your site)</li>
+<li><code>math</code> block is used to handle both inline and block math due to breaking changes made since Hexo 3.x. (This will break your site if you’re using <code>math</code> block)</li>
+</ul>
+<p>Since Hexo 3.x, nunjucks is used as tag engine instead of swig. Syntax like this won’t work any more:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% math \frac&#123;|ax + by + c|&#125;&#123;\sqrt&#123;a^&#123;2&#125;+b^&#123;2&#125;&#125;&#125; %&#125;</span><br></pre></td></tr></table></figure>
+<p>Instead, you should use open and close tag since this version:<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% math %&#125;\frac&#123;|ax + by + c|&#125;&#123;\sqrt&#123;a^&#123;2&#125;+b^&#123;2&#125;&#125;&#125; &#123;% endmath %&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Change all your <code>math</code> tags accordingly.</p>
+<h3 id="Migrating-to-1-0-6"><a href="#Migrating-to-1-0-6" class="headerlink" title="Migrating to 1.0.6"></a>Migrating to 1.0.6</h3><p><strong>!!!IMPORTANT!!!</strong></p>
+<p>Since 1.0.6, hexo-math uses a diffrent approach to inject MathJax into your site. MathJax will be injected on-the-fly and on-demand. This means:</p>
+<ul>
+<li><strong>You are no longer required to run <code>hexo math install</code></strong></li>
+<li>MathJax will not be loaded on pages without math tags allowing faster loading speed.</li>
+</ul>
+<p>If you have run <code>hexo math install</code> before, please <strong>do run:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo math</span><br></pre></td></tr></table></figure>
+<p>This will clean up previous installation. Or you can re-install your theme if for some reason this does not work.</p>
+<h3 id="From-1-0-4-to-1-0-5-Support-Hexo-3-0"><a href="#From-1-0-4-to-1-0-5-Support-Hexo-3-0" class="headerlink" title="From 1.0.4 to 1.0.5 (Support Hexo 3.0)"></a>From 1.0.4 to 1.0.5 (Support Hexo 3.0)</h3><p>Hexo 3.0 introduces multiple breaking changes. Versions before 1.0.5 won’t work with it.<br>The following changes are made since 1.0.5 to adapt the new 3.0 API:</p>
+<ul>
+<li>Block math tag renamed from <code>math-block</code> to <code>math_block</code></li>
+</ul>
+<h3 id="From-1-0-3-and-before"><a href="#From-1-0-3-and-before" class="headerlink" title="From 1.0.3 and before"></a>From 1.0.3 and before</h3><p>Since 1.0.4, MathJax scripts will be injected in <code>&lt;body&gt;</code> section instead of <code>&lt;head&gt;</code> section.<br>Before you update <code>hexo-math</code> to newer version, you should run:</p>
+<blockquote>
+<p>$ hexo math uninstall</p>
+</blockquote>
+<p>After <code>hexo-math</code> is updated, run install again:</p>
+<blockquote>
+<p>$ hexo math install</p>
+</blockquote>
+<h2 id="Development"><a href="#Development" class="headerlink" title="Development"></a>Development</h2><h3 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h3><p>To run the test suit, first you should install dependencies for the test site:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; $ <span class="built_in">cd</span> .<span class="built_in">test</span>-site</span><br><span class="line">&gt; $ npm install</span><br></pre></td></tr></table></figure>
+<p>Then run <code>npm test</code> from <code>hexo-math</code>‘s root dir.</p>
+<h4 id="Add-post-specs"><a href="#Add-post-specs" class="headerlink" title="Add post specs"></a>Add post specs</h4><p>In <code>.test-site/source/_post</code> folder, add a pair of file for each test cases:</p>
+<ul>
+<li>[test-case-name].md</li>
+<li>[test-case-name].md.expected</li>
+</ul>
+<p>The <code>.md</code> file contains the Markdown source of a post and the <code>.expected</code> file contains expected HTML rendered from the source.</p>
+<p>If a test case is added to address certian issues, the issue id should be added to the <code>.md</code>‘s front matter section:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">title: "Tag Escpae"</span><br><span class="line">date: 2015-04-21 02:47:19</span><br><span class="line">tags:</span><br><span class="line">issues:</span><br><span class="line"><span class="bullet">- </span>10</span><br><span class="line">---</span><br><span class="line">&#123;% math %&#125; |a|&lt;1 &#123;% endmath %&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zcatao.github.io/2015/12/19/数字信号处理之离散信号/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Songtao Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zcatao的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/12/19/数字信号处理之离散信号/" itemprop="url">数字信号处理之离散信号</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2015-12-19T10:40:12+08:00">
+                2015-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数字信号处理/" itemprop="url" rel="index">
+                    <span itemprop="name">数字信号处理</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="What’s-离散时间信号"><a href="#What’s-离散时间信号" class="headerlink" title="What’s 离散时间信号"></a>What’s 离散时间信号</h2><blockquote>
+<p>信号可以表示为一个或多个自变量的函数，在信号的分类中，自变量连续的称为<strong>连续时间信号</strong>，自变量离散变化的信号称为<strong>离散时间信号</strong>。离散时间信号通常也被称为<strong>（离散）序列</strong>。另外，在通用计算机中，信号的幅度值只能去有限个离散值。这样的离散时间信号又称为<strong>数字信号</strong></p>
+</blockquote>
+<p>离散序列的$x[k]$可以用图形表示，如下图所示，其中横轴表示整数$k$，纵向线段的长短表示信号幅度的大小。<br><img src="/image/离散序列的图形表示.png" alt="离散序列的图形表示"><br>离散序列$x[k]$ 也可以由矩阵形式表示。上图表示的离散序列可以表示为矩阵形式：<br>$$ \begin{align}<br>&amp;{x}[k]=\{1,1,2,2,1,0;k = -1,0,1,2,3,4\} \\<br>&amp;x[k]=\{1,\hat1,2,2,1,1\}<br>\end{align}$$<br>上式中的箭头$\downarrow$  表示的是$k=0$所在的位置。如果没有特殊说明，约定$k = 0$作为起点<br>离散序列$x[k]$也可以由解析表达式表示，如指数序列<br>$$x[k] = 3(2)^k,k\in Z $$</p>
+<h2 id="常用序列"><a href="#常用序列" class="headerlink" title="常用序列"></a>常用序列</h2><h4 id="1-单位脉冲序列（unit-impulse-sequence）"><a href="#1-单位脉冲序列（unit-impulse-sequence）" class="headerlink" title="1.单位脉冲序列（unit impulse sequence）"></a>1.单位脉冲序列（unit impulse sequence）</h4><p>单位脉冲序列的定义是:<br>  $$\delta[k] =<br>  \begin{cases}<br>  1,&amp;k=0\\<br>  0,&amp;k \neq 0\\<br>  \end{cases}$$<br>  位移_n_个样本之后的单位脉冲序列定义为<br>  $$\delta[k] =<br>  \begin{cases}<br>  1,&amp;k=n\\<br>  0,&amp;k \neq n\\<br>  \end{cases}$$</p>
+<blockquote>
+<p>显然任何离散序列$x[k]$都可以利用单位脉冲序列来表示，即:<br>$$x[k]=\sum_n{x[k]\delta [k-n]}$$<br>  例如${x}[k]=\{1,1,2,2,1,0;k = -1,0,1,2,3,4\}$可以表示为$x[k]=\delta[k+1]+\delta[k]+2\delta[k-1]+2\delta[k-2]+\delta[k-3]$</p>
+</blockquote>
+<h4 id="2-单位阶跃序列-unit-step-sequence"><a href="#2-单位阶跃序列-unit-step-sequence" class="headerlink" title="2.单位阶跃序列(unit step sequence)"></a>2.单位阶跃序列(unit step sequence)</h4><p>  单位阶跃序列的定义为:<br>  $$\delta[k] =<br>  \begin{cases}<br>  1,&amp;k\geqslant 0\\<br>  0,&amp;k&lt;0\\<br>  \end{cases}$$<br>  单位阶跃信号和单位脉冲信号$\delta[k]$之间的关系是<br>  $$u[k] = \sum_{n=-\infty}^{k}\delta{n}\\<br>  \delta[k] = \nabla u[k] = u[k] - u[k-1]$$<br>  由此得出：</p>
+<ul>
+<li><strong>单位节约序列$u[k]$是单位脉冲序列$\delta[k]$的累加</strong></li>
+<li><strong>单位脉冲序列$\delta[k]$是单位阶跃序列$u[k]$的后向差分</strong></li>
+</ul>
+<h4 id="3-矩阵序列（rectangle-sequence）"><a href="#3-矩阵序列（rectangle-sequence）" class="headerlink" title="3.矩阵序列（rectangle sequence）"></a>3.矩阵序列（rectangle sequence）</h4><p>长度为N的矩形序列（rectangle sequence）定义为：<br>$$ R_N[k]=\begin{cases}1,&amp;{0\leqslant{k}\geqslant{N-1}}\\<br>                       0,&amp;\text{其他}\end{cases}$$<br>矩形序列$R_N[k]$可用单位脉冲序列$\delta[k]$或单位阶跃序列$u[k]$表示为<br>$$ R_{N}[k]=u[k]-u[k-N]=\sum_{n=0}^{N-1}\delta[k-n]$$</p>
+<h4 id="4-指数序列"><a href="#4-指数序列" class="headerlink" title="4.指数序列"></a>4.指数序列</h4><h4 id="5-正弦型序列"><a href="#5-正弦型序列" class="headerlink" title="5.正弦型序列"></a>5.正弦型序列</h4><h4 id="6-虚指数序列"><a href="#6-虚指数序列" class="headerlink" title="6.虚指数序列"></a>6.虚指数序列</h4><hr>
+<h2 id="序列的卷积与相关运算"><a href="#序列的卷积与相关运算" class="headerlink" title="序列的卷积与相关运算"></a>序列的卷积与相关运算</h2><h3 id="1-序列的卷积"><a href="#1-序列的卷积" class="headerlink" title="1.序列的卷积"></a>1.序列的卷积</h3><p>序列的卷积(convolution)定义为<br>$$y[k] = x_1[k] * x_2[k] = \sum_{n=-\infty}^{\infty}x_1[n]x_2[k]$$<br>对于序列的卷积运算的物理意义有一遍比较好的解释<a href="">卷积</a></p>
+<blockquote>
+<p>从另一种意义上讲，线性卷积y[k]是h[k]去加权x各个时延版本在求和<br>或者，各个时刻的激励x在k时刻的冲激响应的叠加，即激励信号对系统H的零状态响应</p>
+</blockquote>
+<p>序列的卷积运算满足：</p>
+<ul>
+<li>交换率</li>
+<li>结合律</li>
+<li>分配率</li>
+<li>位移特性</li>
+</ul>
+<h3 id="2-序列相关运算"><a href="#2-序列相关运算" class="headerlink" title="2.序列相关运算"></a>2.序列相关运算</h3><h2 id="离散时间系统"><a href="#离散时间系统" class="headerlink" title="离散时间系统"></a>离散时间系统</h2><blockquote>
+<p>离散时间系统可对一个已知的输入序列进行处理，从而产生一个满足特定需求的输出序列<br>系统建立了输入和输出之间的关系，即，$y[k]=T\{x[k]\}$</p>
+</blockquote>
+<h4 id="系统分类"><a href="#系统分类" class="headerlink" title="系统分类"></a>系统分类</h4><ul>
+<li>线性系统 输入于输出均满足均匀性和叠加性</li>
+<li>非时变系统</li>
+<li>因果系统</li>
+<li>稳定系统</li>
+</ul>
+<p>如果一个系统满足线性和非时变特性，即称为<strong>LTI</strong>(Linear Time-Invariant)</p>
+<h3 id="离散LTI系统的响应及其特性"><a href="#离散LTI系统的响应及其特性" class="headerlink" title="离散LTI系统的响应及其特性"></a>离散LTI系统的响应及其特性</h3><h4 id="1-系统的单位脉冲响应"><a href="#1-系统的单位脉冲响应" class="headerlink" title="1. 系统的单位脉冲响应"></a>1. 系统的单位脉冲响应</h4><p>  离散LTI系统的单位脉冲响应定义为系统在零状态条件下，由单位脉冲响应$ \delta[k]$激励系统而产生的响应$h[k]$<br>  $$ h[k] = T\{\delta[k]\}$$</p>
+<blockquote>
+<p>单位脉冲信号$\delta[k]$ 作为输入信号仅在零时刻存在信号输入，所以单位脉冲响应$h[k]$显然和系统的输入和输出无关，只取决于系统本身的结构和参数，所以用来反映离散LTI系统的时域特性</p>
+</blockquote>
+<h4 id="2-离散LTI系统的零状态响应"><a href="#2-离散LTI系统的零状态响应" class="headerlink" title="2. 离散LTI系统的零状态响应"></a>2. 离散LTI系统的零状态响应</h4><p>  由于x[k]很容易表达为多个单位脉冲信号$\delta[k]$的叠加，所以离散LTI系统的零状态响应可用单位脉冲响应来表示<br>显然：<br>$$ x[k] = \sum_n x[ n ]\delta[k-n] $$<br>根据LTI系统的线性特性可以得到：<br>$$ y[k] = T\{x[k]\} = T\{\sum_n x[ n ]\delta[k-n]\} = \sum_n x[k].T\{\delta[k-n]\} $$<br>由于是时不变系统，上式也就变为<br>$$ y[k] = x[k] * \delta[k] $$</p>
+<h4 id="3-离散LTI系统稳定的充要条件"><a href="#3-离散LTI系统稳定的充要条件" class="headerlink" title="3. 离散LTI系统稳定的充要条件"></a>3. 离散LTI系统稳定的充要条件</h4><p>$$ \sum_{k=-\infty}^{\infty}|h[k]| = S &lt; \infty $$</p>
+<blockquote>
+<p>也就是说任何信号的零状态响应都可以表示为该信号和该离散LTI系统单位脉冲响应的卷积</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zcatao.github.io/2015/12/18/Markdown简述/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -422,7 +792,7 @@
 <h2 id="关于试用"><a href="#关于试用" class="headerlink" title="关于试用"></a>关于试用</h2><p><strong>马克飞象</strong>为新用户提供 10 天的试用期，试用期过后将不能同步新的笔记。之前保存过的笔记依然可以编辑。</p>
 <h2 id="反馈与建议"><a href="#反馈与建议" class="headerlink" title="反馈与建议"></a>反馈与建议</h2><ul>
 <li>微博：<a href="http://weibo.com/u/2788354117" target="_blank" rel="noopener">@马克飞象</a>，<a href="http://weibo.com/ggock" title="开发者个人账号" target="_blank" rel="noopener">@GGock</a></li>
-<li>邮箱：<a href="mailto:&#104;&#117;&#115;&#116;&#x67;&#x6f;&#x63;&#107;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;" target="_blank" rel="noopener">&#104;&#117;&#115;&#116;&#x67;&#x6f;&#x63;&#107;&#64;&#103;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#x6f;&#x6d;</a></li>
+<li>邮箱：<a href="mailto:&#x68;&#x75;&#x73;&#116;&#x67;&#x6f;&#x63;&#x6b;&#64;&#103;&#109;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#x6d;" target="_blank" rel="noopener">&#x68;&#x75;&#x73;&#116;&#x67;&#x6f;&#x63;&#x6b;&#64;&#103;&#109;&#97;&#x69;&#x6c;&#46;&#x63;&#x6f;&#x6d;</a></li>
 </ul>
 <hr>
 <p>感谢阅读这份帮助文档。请点击右上角，绑定印象笔记账号，开启全新的记录与分享体验吧。</p>
@@ -898,7 +1268,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
