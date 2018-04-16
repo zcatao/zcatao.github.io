@@ -17,6 +17,10 @@
 
 
 
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
 
 
 
@@ -84,7 +88,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="dsp选型">
 <meta property="og:url" content="http://zcatao.github.io/2015/12/24/dsp选型/index.html">
-<meta property="og:site_name" content="zcatao">
+<meta property="og:site_name" content="zcatao的个人博客">
 <meta property="og:description" content="TI公司现在主推四大系列DSP 1）C5000系列（定点、低功耗）：C54X，C54XX，C55X 相比其它系列的主 要特点是低功耗，所以最适合个人与便携式上网以及无线通信应用，如手 机、PDA、GPS等应用。处理速度在80MIPS–400MIPS之间。C54XX和C55XX 一般只具有McBSP同步串口、HPI并行接口、定时器、DMA等外设。 值得注意的是C55XX提供了EMIF外部存储器扩展接">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2018-04-15T12:48:07.098Z">
@@ -100,7 +104,7 @@
     root: '/',
     scheme: 'Muse',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -126,7 +130,7 @@
 
 
 
-  <title>dsp选型 | zcatao</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>dsp选型 | zcatao的个人博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -156,12 +160,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">zcatao</span>
+        <span class="site-title">zcatao的个人博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle">zcatao'blog</p>
+        <p class="site-subtitle">脚踏实地，唯有如此</p>
       
   </div>
 
@@ -187,6 +191,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
           </a>
         </li>
       
@@ -252,7 +266,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zcatao">
+      <meta itemprop="name" content="zcatao的个人博客">
     </span>
 
     
@@ -304,7 +318,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -521,6 +535,8 @@
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     

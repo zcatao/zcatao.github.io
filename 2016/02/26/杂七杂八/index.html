@@ -17,6 +17,10 @@
 
 
 
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
 
 
 
@@ -83,7 +87,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="杂七杂八">
 <meta property="og:url" content="http://zcatao.github.io/2016/02/26/杂七杂八/index.html">
-<meta property="og:site_name" content="zcatao">
+<meta property="og:site_name" content="zcatao的个人博客">
 <meta property="og:description" content="引脚输入输出类型 上拉/下拉输入 浮空输入 模拟输入模式·(应用于连接ADC模块) 开漏输出 推挽输出   开漏输出OD（集电极开路OC）当集电极开路时的结构如同图一所示。由CPU软件控制左端的输入。正是由于右边的那个三极管集电极什么都不接，所以叫做集电极开路（左边三极管起到反相作用，使当输入为0时，输出也为“0”）。当左端的输入为0时，前面的三极管截至。所以5V电源通过1K电阻加到右边的三极管的">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://zcatao.github.io/image/集电极开路输出.jpg">
@@ -101,7 +105,7 @@
     root: '/',
     scheme: 'Muse',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -127,7 +131,7 @@
 
 
 
-  <title>杂七杂八 | zcatao</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>杂七杂八 | zcatao的个人博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -157,12 +161,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">zcatao</span>
+        <span class="site-title">zcatao的个人博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle">zcatao'blog</p>
+        <p class="site-subtitle">脚踏实地，唯有如此</p>
       
   </div>
 
@@ -188,6 +192,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
           </a>
         </li>
       
@@ -253,7 +267,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zcatao">
+      <meta itemprop="name" content="zcatao的个人博客">
     </span>
 
     
@@ -305,7 +319,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -550,6 +564,8 @@
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     

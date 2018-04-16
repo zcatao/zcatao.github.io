@@ -17,6 +17,10 @@
 
 
 
+  
+  
+  <link rel="stylesheet" media="all" href="/lib/Han/dist/han.min.css?v=3.3">
+
 
 
 
@@ -84,7 +88,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Matlab的基本数值运算">
 <meta property="og:url" content="http://zcatao.github.io/2015/12/18/Matlab的基本数值运算/index.html">
-<meta property="og:site_name" content="zcatao">
+<meta property="og:site_name" content="zcatao的个人博客">
 <meta property="og:description" content="创建矩阵的基本方法直接输入法注意： 矩阵元素必须用[   ]  括住 矩阵元素必须用逗号 或者空格分隔 在  [  ]内矩阵的行和行之间必须用分号分隔矩阵元素： 矩阵元素可以是matlab表达式，可以是实数，也可以是复数逗号和分号的作用： 如同C语言一样可以作为指令间的分隔符。 区别在于逗号结尾的语句在运行结束时立即显示语句的运行结果，而分号结尾的语句在运行结束之后不显示结果冒号的作用：">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2018-04-15T12:48:07.098Z">
@@ -100,7 +104,7 @@
     root: '/',
     scheme: 'Muse',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -126,7 +130,7 @@
 
 
 
-  <title>Matlab的基本数值运算 | zcatao</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Matlab的基本数值运算 | zcatao的个人博客</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -156,12 +160,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">zcatao</span>
+        <span class="site-title">zcatao的个人博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle">zcatao'blog</p>
+        <p class="site-subtitle">脚踏实地，唯有如此</p>
       
   </div>
 
@@ -187,6 +191,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
           </a>
         </li>
       
@@ -252,7 +266,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zcatao">
+      <meta itemprop="name" content="zcatao的个人博客">
     </span>
 
     
@@ -304,7 +318,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
       
@@ -552,6 +566,8 @@
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     
