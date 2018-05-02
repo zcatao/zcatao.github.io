@@ -83,17 +83,17 @@
 
 
 
-<meta name="description" content="最近浩哥给我布置了一个FPGA实现QPSK解调的任务，其中最重要的一步便是载波同步——Costas环技术的实现，老大也基于了一些思想上的指导。已经布置了好长时间了，不能让老大失望。  载波同步中的性能参数 同步带(Hold range) 在锁定状态下，缓慢地改变输入信号频率来增加固有频差，若环路随着频差增大而最终失锁，那么失锁时对应的最大固有频差成为同步带。   同步带是环路可以维持静态相位跟踪">
+<meta name="description" content="最近浩哥给我布置了一个FPGA实现QPSK解调的任务，其中最重要的一步便是载波同步——Costas环技术的实现，老大也基于了一些思想上的指导。已经布置了好长时间了，不能让老大失望。  载波同步中的性能参数 同步带(Hold range)  在锁定状态下，缓慢地改变输入信号频率来增加固有频差，若环路随着频差增大而最终失锁，那么失锁时对应的最大固有频差成为同步带。  同步带是环路可以维持静态相位跟踪">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Costas环的设计与实现">
 <meta property="og:url" content="http://zcatao.github.io/2018/04/16/Costas环的设计与实现/index.html">
 <meta property="og:site_name" content="zcatao的个人博客">
-<meta property="og:description" content="最近浩哥给我布置了一个FPGA实现QPSK解调的任务，其中最重要的一步便是载波同步——Costas环技术的实现，老大也基于了一些思想上的指导。已经布置了好长时间了，不能让老大失望。  载波同步中的性能参数 同步带(Hold range) 在锁定状态下，缓慢地改变输入信号频率来增加固有频差，若环路随着频差增大而最终失锁，那么失锁时对应的最大固有频差成为同步带。   同步带是环路可以维持静态相位跟踪">
+<meta property="og:description" content="最近浩哥给我布置了一个FPGA实现QPSK解调的任务，其中最重要的一步便是载波同步——Costas环技术的实现，老大也基于了一些思想上的指导。已经布置了好长时间了，不能让老大失望。  载波同步中的性能参数 同步带(Hold range)  在锁定状态下，缓慢地改变输入信号频率来增加固有频差，若环路随着频差增大而最终失锁，那么失锁时对应的最大固有频差成为同步带。  同步带是环路可以维持静态相位跟踪">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-04-16T11:46:34.867Z">
+<meta property="og:updated_time" content="2018-04-16T11:47:22.647Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Costas环的设计与实现">
-<meta name="twitter:description" content="最近浩哥给我布置了一个FPGA实现QPSK解调的任务，其中最重要的一步便是载波同步——Costas环技术的实现，老大也基于了一些思想上的指导。已经布置了好长时间了，不能让老大失望。  载波同步中的性能参数 同步带(Hold range) 在锁定状态下，缓慢地改变输入信号频率来增加固有频差，若环路随着频差增大而最终失锁，那么失锁时对应的最大固有频差成为同步带。   同步带是环路可以维持静态相位跟踪">
+<meta name="twitter:description" content="最近浩哥给我布置了一个FPGA实现QPSK解调的任务，其中最重要的一步便是载波同步——Costas环技术的实现，老大也基于了一些思想上的指导。已经布置了好长时间了，不能让老大失望。  载波同步中的性能参数 同步带(Hold range)  在锁定状态下，缓慢地改变输入信号频率来增加固有频差，若环路随着频差增大而最终失锁，那么失锁时对应的最大固有频差成为同步带。  同步带是环路可以维持静态相位跟踪">
 
 
 
@@ -190,6 +190,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
           </a>
         </li>
       
@@ -327,8 +337,7 @@
 <p>最近浩哥给我布置了一个FPGA实现QPSK解调的任务，其中最重要的一步便是载波同步——Costas环技术的实现，老大也基于了一些思想上的指导。已经布置了好长时间了，不能让老大失望。</p>
 </blockquote>
 <h2 id="载波同步中的性能参数"><a href="#载波同步中的性能参数" class="headerlink" title="载波同步中的性能参数"></a>载波同步中的性能参数</h2><ul>
-<li><strong>同步带(Hold range)</strong> <pre><code>在锁定状态下，缓慢地改变输入信号频率来增加固有频差，若环路随着频差增大而最终失锁，那么失锁时对应的最大固有频差成为同步带。
-</code></pre>  同步带是环路可以维持静态相位跟踪的频偏范围，锁相环路在此范围内可以保持静态的条件稳定。同步带代表了锁相环的静态稳定极限。</li>
+<li><strong>同步带(Hold range)</strong><br>  在锁定状态下，缓慢地改变输入信号频率来增加固有频差，若环路随着频差增大而最终失锁，那么失锁时对应的最大固有频差成为同步带。<br>  同步带是环路可以维持静态相位跟踪的频偏范围，锁相环路在此范围内可以保持静态的条件稳定。同步带代表了锁相环的静态稳定极限。</li>
 <li><strong>快捕带(Lock range)</strong><br>  锁相环不经过跳周而达到锁定的最大固有频差称为快捕带。</li>
 <li><strong>失锁带(Pull-out range)</strong><br>  如果锁相环的输入信号的频率阶跃超过一定范围，那么锁相环将失锁，这个频率的范围称为失锁带。</li>
 <li><strong>捕获带(Pull-in range)</strong><br>  在锁相环初始时刻就处于失锁状态的情况下，环路最终能锁定的最大固有频差成为锁相环的捕获带。只要环路失锁时的频偏在这一范围里，环路总会再次锁定，但时间可能会很长。</li>
@@ -461,7 +470,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -471,10 +480,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">8</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">categories</span>
-                
+                </a>
               </div>
             
 
@@ -482,10 +491,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">27</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 

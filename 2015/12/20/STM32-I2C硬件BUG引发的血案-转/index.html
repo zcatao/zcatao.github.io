@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="STM32,I2C,嵌入式,ARM," />
+  <meta name="keywords" content="STM32,嵌入式,ARM,I2C," />
 
 
 
@@ -84,7 +84,7 @@
 
 
 <meta name="description" content="江湖传言，STM32的硬件I2C一直有bug，最近面临做四旋翼的芯片选型问题,原文  下面的函数中有一个BUG, 也就是SR2不能用WHILE来轮询,而应直接读出.如下面代码段, 因此,在这里说的这是STM32的BUG其实是我的代码的错误:123I2C2-&amp;gt;DR = inerAddress[1];while( (I2C2-&amp;gt;SR1&amp;amp;Q_I2C_SR1_BIT_BTF)==0">
-<meta name="keywords" content="STM32,I2C,嵌入式,ARM">
+<meta name="keywords" content="STM32,嵌入式,ARM,I2C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="STM32_I2C硬件BUG引发的血案(转)">
 <meta property="og:url" content="http://zcatao.github.io/2015/12/20/STM32-I2C硬件BUG引发的血案-转/index.html">
@@ -198,6 +198,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
           </a>
         </li>
       
@@ -391,11 +401,11 @@
           
             <a href="/tags/STM32/" rel="tag"># STM32</a>
           
-            <a href="/tags/I2C/" rel="tag"># I2C</a>
-          
             <a href="/tags/嵌入式/" rel="tag"># 嵌入式</a>
           
             <a href="/tags/ARM/" rel="tag"># ARM</a>
+          
+            <a href="/tags/I2C/" rel="tag"># I2C</a>
           
         </div>
       
@@ -488,7 +498,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">31</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -498,10 +508,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">8</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">categories</span>
-                
+                </a>
               </div>
             
 
@@ -509,10 +519,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">27</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">tags</span>
-                
+                </a>
               </div>
             
 
