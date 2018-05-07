@@ -273,6 +273,138 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zcatao.github.io/2018/05/07/vivado中includel默认路径配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Songtao Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zcatao的个人博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/07/vivado中includel默认路径配置/" itemprop="url">vivado中include默认路径配置</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-07T18:02:11+08:00">
+                2018-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>在FPGA的日常开发中，经常会有代码移植的情况。在移植过后，原有的代码中include的文件的路径不再包含在工程的默认路径中。这个时候需要手动配置</p>
+</blockquote>
+<ul>
+<li>vivado环境中include路径不对时的提示<br><img src="\image\vivado_include路径不对.png" alt="vivado环境中include路径不对时的提示"></li>
+</ul>
+<p>第一步 project setting </p>
+<p>第二步 verilog option</p>
+<p>第三步 add Directories </p>
+<p>第四步 添加需要设置的上层</p>
+<p><img src="\image\vivado设置.png" alt="vivado设置"></p>
+<p>结果：</p>
+<p><img src="\image\微信图片_20180507183516.png" alt="配置成功结果"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zcatao.github.io/2018/04/28/git常用命令及操作/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1402,149 +1534,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zcatao.github.io/2018/04/16/Costas环的设计与实现/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Songtao Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="zcatao的个人博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/16/Costas环的设计与实现/" itemprop="url">Costas环的设计与实现</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-16T08:57:51+08:00">
-                2018-04-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>最近浩哥给我布置了一个FPGA实现QPSK解调的任务，其中最重要的一步便是载波同步——Costas环技术的实现，老大也基于了一些思想上的指导。已经布置了好长时间了，不能让老大失望。</p>
-</blockquote>
-<h2 id="载波同步中的性能参数"><a href="#载波同步中的性能参数" class="headerlink" title="载波同步中的性能参数"></a>载波同步中的性能参数</h2><ul>
-<li><strong>同步带(Hold range)</strong><br>  在锁定状态下，缓慢地改变输入信号频率来增加固有频差，若环路随着频差增大而最终失锁，那么失锁时对应的最大固有频差成为同步带。<br>  同步带是环路可以维持静态相位跟踪的频偏范围，锁相环路在此范围内可以保持静态的条件稳定。同步带代表了锁相环的静态稳定极限。</li>
-<li><strong>快捕带(Lock range)</strong><br>  锁相环不经过跳周而达到锁定的最大固有频差称为快捕带。</li>
-<li><strong>失锁带(Pull-out range)</strong><br>  如果锁相环的输入信号的频率阶跃超过一定范围，那么锁相环将失锁，这个频率的范围称为失锁带。</li>
-<li><strong>捕获带(Pull-in range)</strong><br>  在锁相环初始时刻就处于失锁状态的情况下，环路最终能锁定的最大固有频差成为锁相环的捕获带。只要环路失锁时的频偏在这一范围里，环路总会再次锁定，但时间可能会很长。</li>
-<li><strong>捕获时间(Pull-in time)</strong><br>  环路从某个起始状态频差开始，经历周期跳跃达到频率锁定所需的时间。即初始频差在锁相环的捕获带内，锁相环从失锁状态到锁定状态所需的时间。</li>
-<li><p><strong>快捕时间(Lock time)</strong><br>  环路从某个起始状态频差开始，不经历周期跳跃达到频率锁定所需的时间。即初始频差在锁相环的快捕带内，锁相环从失锁状态到锁定状态所需的时间。</p>
-</li>
-<li><p><strong>环路前置带宽</strong>  $B_i$ 通常需要计算输入端叠加的高斯白噪声的带宽，即$N_0 B_i$</p>
-</li>
-<li><p><strong>环路单边噪声带宽</strong> $B_L$<br>  对于理想二阶环，$B_L$的计算方法是：<br>  $$ B_L=\frac{\omega_n}{8\xi}(1+4\xi^2) $$</p>
-</li>
-<li><strong>环路自然角频率</strong> $\omega_n$<br>  $\omega_n$的值越小，环路锁定时的信噪比条件越低，环路更容易在恶劣的条件下锁定，并且锁定之后的稳态相差越小。<br>  $\omega_n$的值越大，环路的快捕带越宽，捕获约迅速。</li>
-</ul>
-<blockquote>
-<p>注：此节引用<a href="http://blog.sina.com.cn/s/blog_a76ffd4b01010jdb.html" target="_blank" rel="noopener">lifejustdoit的博客</a></p>
-</blockquote>
-<h2 id="参数的计算"><a href="#参数的计算" class="headerlink" title="参数的计算"></a>参数的计算</h2><ul>
-<li>环路滤波器的系数<br>$$ C_1 = \dfrac{2\xi\omega_n T}{K} $$<br>$$ C_2 = \dfrac{(\omega_n T)^2}{K} $$<br>其中环路自然角频率$\omega_n$<br>$$ \begin{equation}\begin{split}<br>  \omega_n &amp;= \dfrac{8\xi(S/N)_i B_i}{(S/N)_L(1+4\xi^2)}<br>  \end{split}<br>  \end{equation}<br>  $$</li>
-</ul>
-<h2 id="Costas环实现框图"><a href="#Costas环实现框图" class="headerlink" title="Costas环实现框图"></a>Costas环实现框图</h2><h2 id="环路滤波器模型"><a href="#环路滤波器模型" class="headerlink" title="环路滤波器模型"></a>环路滤波器模型</h2><pre><code>$$H(z)=C_1 + \dfrac{C_2 z^{-1}}{1-z^{-1}}$$
-</code></pre><h2 id="matlab-仿真"><a href="#matlab-仿真" class="headerlink" title="matlab 仿真"></a>matlab 仿真</h2><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">clear;clc</span><br><span class="line"><span class="comment">%% 设置参数</span></span><br><span class="line">load(<span class="string">'lpf.mat'</span>,<span class="string">'Num'</span>);</span><br><span class="line">fs = <span class="number">50e6</span>;          <span class="comment">%采样频率</span></span><br><span class="line">sim_time = <span class="number">0.05</span>;    <span class="comment">%仿真时长</span></span><br><span class="line">real_fc = <span class="number">1000050</span>;  <span class="comment">%实信号载波频</span></span><br><span class="line">local_fc = <span class="number">10000</span>;   <span class="comment">%初始本地振荡频率</span></span><br><span class="line">SampleBit_len = <span class="number">8</span>;</span><br><span class="line">LocalBit_len = <span class="number">8</span>;</span><br><span class="line">DDS_PhaseBit_len = <span class="number">32</span>;</span><br><span class="line"></span><br><span class="line">C1 = power(<span class="number">2</span>,<span class="number">-31</span>);</span><br><span class="line">C2 = power(<span class="number">2</span>,<span class="number">-15</span>);</span><br><span class="line"></span><br><span class="line">t =   <span class="number">1</span> / fs : <span class="number">1</span> / fs : sim_time;</span><br><span class="line">sampled_data = <span class="built_in">sin</span>(<span class="number">2</span> * <span class="built_in">pi</span> * real_fc * t) ;</span><br><span class="line">Data_length = <span class="built_in">length</span>(sampled_data);</span><br><span class="line"></span><br><span class="line"><span class="comment">%变量申请空间</span></span><br><span class="line"><span class="comment">% DDS_CtrlWord=   zeros(1,Data_length);</span></span><br><span class="line"><span class="comment">% DDS_Phase   =   zeros(1,Data_length);</span></span><br><span class="line"><span class="comment">% nco_cos     =   zeros(1,Data_length);</span></span><br><span class="line"><span class="comment">% nco_sin     =   zeros(1,Data_length);</span></span><br><span class="line"></span><br><span class="line">t = power(<span class="number">2</span>,DDS_PhaseBit_len);</span><br><span class="line"></span><br><span class="line"><span class="comment">% for k = 1 : Data_length - 1</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">%     DDS_CtrlWord(k) = 1024;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%     nco_sin(k) = sin(2 * pi * DDS_Phase(k) / t);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%     nco_cos(k) = cos(2 * pi * DDS_Phase(k) / t);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%     DDS_Phase(k+1) = DDS_Phase(k) + DDS_CtrlWord(k);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% end </span></span><br><span class="line"><span class="comment">% lpf_out_i = zeros(1,length(Num));</span></span><br><span class="line"><span class="comment">% lpf_out_q = zeros(1,length(Num));</span></span><br><span class="line">mult_i  = <span class="built_in">zeros</span>(<span class="number">1</span>,Data_length + <span class="built_in">length</span>(Num));</span><br><span class="line">mult_q  = <span class="built_in">zeros</span>(<span class="number">1</span>,Data_length + <span class="built_in">length</span>(Num));</span><br><span class="line"></span><br><span class="line">DDS_Phase = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">figure;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> k = <span class="number">1</span> : Data_length - <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">%  DDS_CtrlWord = 1024;</span></span><br><span class="line"></span><br><span class="line">    nco_sin = <span class="built_in">sin</span>(<span class="number">2</span> * <span class="built_in">pi</span> * DDS_Phase / t) * power(<span class="number">2</span>,LocalBit_len);</span><br><span class="line"></span><br><span class="line">    nco_cos = <span class="built_in">cos</span>(<span class="number">2</span> * <span class="built_in">pi</span> * DDS_Phase / t) * power(<span class="number">2</span>,LocalBit_len);</span><br><span class="line"></span><br><span class="line">    mult_i(k + <span class="built_in">length</span>(Num) - <span class="number">1</span>)  = nco_sin * sampled_data(k);</span><br><span class="line"></span><br><span class="line">    mult_q(k + <span class="built_in">length</span>(Num) - <span class="number">1</span>)  = nco_sin * sampled_data(k);</span><br><span class="line"></span><br><span class="line">    lpf_out_i   =  mult_i(k + <span class="built_in">length</span>(Num) - <span class="number">1</span> : <span class="number">-1</span> : k) * Num';</span><br><span class="line"></span><br><span class="line">    lpf_out_q   =  mult_q(k + <span class="built_in">length</span>(Num) - <span class="number">1</span> : <span class="number">-1</span> : k) * Num';</span><br><span class="line"></span><br><span class="line">    PhaseDetect = lpf_out_i * lpf_out_q;</span><br><span class="line"></span><br><span class="line">    LoopFilter_out = PhaseDetect;</span><br><span class="line"></span><br><span class="line">    DDS_CtrlWord = LoopFilter_out;</span><br><span class="line">    </span><br><span class="line">    DDS_Phase = DDS_Phase + DDS_CtrlWord;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1595,7 +1584,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1617,7 +1606,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
